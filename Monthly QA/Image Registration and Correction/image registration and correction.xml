@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VarianResearchBeam SchemaVersion="1.0">
+<!--*******************************************************************************
+1. A phantom is placed on the couch with known position in respect to machine isocenter. 
+2. the couch positions are automatically displace to five controlled positions.  
+3. kV OBI, MV EPID and kV-CBCT are obtained for each couch position. 
+4. A 2D/2D and 3D/3D image registration using tools provided by Varian is performed
+5. The couch shifts are calculated and exported to be compared to the known positions.
+********************************************************************************-->
+<SetBeam>
+	<Id>1</Id>
+	<MLCModel>NDS120HD</MLCModel>
+	<Accs></Accs>
+	<ControlPoints>
+		<Cp> <!--cp 0: Set up initial position of the table, the gantry, the Jaws (open) and the MLC field (square)-->
+			<SubBeam><Seq>0</Seq><Name>Imaging and treatment coordinate coincidence</Name></SubBeam>
+			<Energy>6x</Energy><Mu>0</Mu><DRate>600</DRate>
+			<GantryRtn>180.00</GantryRtn><CollRtn>180.00</CollRtn>
+			<CouchVrt>100.0</CouchVrt><CouchLat>100.00</CouchLat>
+			<CouchLng>125.00</CouchLng><CouchRtn>180.0</CouchRtn>
+			<Y1>5.00</Y1><Y2>5.00</Y2><X1>6.00</X1><X2>6.00</X2><!-- What should the size of the jaws be?-->
+			<Mlc>
+				<ID>1</ID>
+				<B>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</B>
+				<A>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</A>
+			</Mlc>
+		</Cp>
+		<Cp></Cp> <!--cp 1: Use this dummy to index MV EPID image. -->
+		<Cp><GantryRtn>90.00</GantryRtn></Cp><!--cp 2: Use to rotate Gantry for KV OBI image. --> 
+		<Cp></Cp> <!--cp 3: Use this dummy to index KV OBI image. -->
+		<Cp><GantryRtn>-4</GantryRtn> </Cp> <!--cp 4: Use to rotate the Gantry to the initial position for  KV CBCT acquisition -->
+		<Cp><GantryRtn>364</GantryRtn> </Cp> <!--cp 5: Use to end the rotation of the Gantry for  KV CBCT acquisition -->
+		<Cp><GantryRtn>180</GantryRtn> </Cp> <!--cp 6: Use to bring the Gantry back to initial position -->
+
+		<Cp>  <!-- cp 7: position of the couch 2-->
+			<CouchVrt>99.6</CouchVrt><CouchLat>101.00</CouchLat><CouchLng>124.90</CouchLng><CouchRtn>178.9</CouchRtn>
+		</Cp> 
+		<Cp></Cp> <!--cp 8: Use this dummy to index MV EPID image. -->
+		<Cp><GantryRtn>90.00</GantryRtn></Cp><!--cp 9: Use to rotate Gantry for KV OBI image. --> 
+		<Cp></Cp> <!--cp 10: Use this dummy to index KV OBI image. -->
+		<Cp><GantryRtn>-4</GantryRtn> </Cp> <!--cp 11: Use to rotate the Gantry to the initial position for  KV CBCT acquisition -->
+		<Cp><GantryRtn>364</GantryRtn> </Cp> <!--cp 12: Use to end the rotation of the Gantry for  KV CBCT acquisition -->
+		<Cp><GantryRtn>180</GantryRtn> </Cp> <!--cp 13: Use to bring the Gantry back to initial position -->
+		
+		
+		<Cp> <!-- cp: 14 position of the couch 3-->
+			<CouchVrt>100.0</CouchVrt><CouchLat>100.00</CouchLat><CouchLng>125.00</CouchLng><CouchRtn>180.0</CouchRtn>
+		</Cp> 
+		<Cp></Cp> <!--cp 15: Use this dummy to index MV EPID image. -->
+		<Cp><GantryRtn>90.00</GantryRtn></Cp><!--cp 16: Use to rotate Gantry for KV OBI image. --> 
+		<Cp></Cp> <!--cp 17: Use this dummy to index KV OBI image. -->
+		<Cp><GantryRtn>-4</GantryRtn> </Cp> <!--cp 18: Use to rotate the Gantry to the initial position for  KV CBCT acquisition -->
+		<Cp><GantryRtn>364</GantryRtn> </Cp> <!--cp 19: Use to end the rotation of the Gantry for  KV CBCT acquisition -->
+		<Cp><GantryRtn>180</GantryRtn> </Cp> <!--cp 20: Use to bring the Gantry back to initial position -->
+		
+		
+		<Cp> <!-- cp 21: position of the couch 4-->
+			<CouchVrt>99.6</CouchVrt><CouchLat>101.00</CouchLat><CouchLng>124.90</CouchLng><CouchRtn>178.9</CouchRtn>
+		</Cp> 
+		<Cp></Cp> <!--cp 22: Use this dummy to index MV EPID image. -->
+		<Cp><GantryRtn>90.00</GantryRtn></Cp><!--cp 23: Use to rotate Gantry for KV OBI image. --> 
+		<Cp></Cp> <!--cp 24: Use this dummy to index KV OBI image. -->
+		<Cp><GantryRtn>-4</GantryRtn> </Cp> <!--cp 25: Use to rotate the Gantry to the initial position for  KV CBCT acquisition -->
+		<Cp><GantryRtn>364</GantryRtn> </Cp> <!--cp 26: Use to end the rotation of the Gantry for  KV CBCT acquisition -->
+		<Cp><GantryRtn>180</GantryRtn> </Cp> <!--cp 27: Use to bring the Gantry back to initial position -->
+		
+		
+		<Cp> <!-- cp 28: position of the couch 5-->
+			<CouchVrt>100.0</CouchVrt><CouchLat>100.00</CouchLat><CouchLng>125.00</CouchLng><CouchRtn>180.0</CouchRtn>
+		</Cp> 
+		<Cp></Cp> <!--cp 29: Use this dummy to index MV EPID image. -->
+		<Cp><GantryRtn>90.00</GantryRtn></Cp><!--cp 30: Use to rotate Gantry for KV OBI image. --> 
+		<Cp></Cp> <!--cp 31: Use this dummy to index KV OBI image. -->
+		<Cp><GantryRtn>-4</GantryRtn> </Cp> <!--cp 32: Use to rotate the Gantry to the initial position for  KV CBCT acquisition -->
+		<Cp><GantryRtn>364</GantryRtn> </Cp> <!--cp 33: Use to end the rotation of the Gantry for  KV CBCT acquisition -->
+		<Cp><GantryRtn>180</GantryRtn> </Cp> <!--cp 34: Use to bring the Gantry back to initial position -->
+	</ControlPoints>
+	<!--________________________________________________-->
+	<!-- I M A G I N G S E C T I O N -->
+	<!--________________________________________________-->
+	<ImagingParameters>
+		<OutsideTreatment>
+			<MaxMu>400</MaxMu> 
+		</OutsideTreatment>
+		<ImagingPoints>
+		<!-- Make sure that the KV imager and source are in the correct position -->	
+			<ImagingPoint>
+					<Cp>0</Cp>
+					<Mvd> 
+						<Positions>
+						<Lat>0</Lat><Lng>0</Lng><Vrt>-50</Vrt><Pitch>0</Pitch>
+						</Positions>
+					</Mvd>
+					<Kvd> <!-- Make sure the Kvd imager is in the right position -->
+						<Positions>
+						<Lat>0</Lat><Lng>0</Lng><Vrt>-50</Vrt><Pitch>0</Pitch>
+						</Positions>
+					</Kvd> 
+					<Kvs> <!-- Make sure the KV source is in the right position -->
+						<Positions>
+						<Lat>0</Lat><Lng>0</Lng><Vrt>100</Vrt><Pitch>0</Pitch>
+						</Positions>
+					</Kvs>						
+			</ImagingPoint>
+			<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>1</Cp>
+				<Acquisition>
+				<AcquisitionId>1</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take KV  OBI image -->
+			<ImagingPoint>
+				<Cp>3</Cp>
+				<Acquisition>
+				<AcquisitionId>2</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake><KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="HighQuality" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<KV> 
+				<KiloVolts>80</KiloVolts><MilliAmperes>50</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</Acquisition>
+			</ImagingPoint>
+		<!--Take KV CBCT image -->	
+			<ImagingPoint>
+				<Cp>4</Cp>
+				<AcquisitionStart>
+				<AcquisitionId>3</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake>
+				<KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="DynamicGainFluoro"/>
+				<CalibrationSet>IMG-CBCT</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination>
+				<KV>
+				<KiloVolts>100</KiloVolts><MilliAmperes>40</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds><eFocalSpot>Large</eFocalSpot>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</AcquisitionStart>
+			</ImagingPoint>
+			<ImagingPoint>
+				<Cp>5</Cp>
+				<AcquisitionStop>
+				<AcquisitionId>3</AcquisitionId> 
+				<AcquisitionSpecs />
+				</AcquisitionStop>
+			</ImagingPoint>	
+		<!--Take MV EPID image -->
+			<ImagingPoint>
+				<Cp>8</Cp>
+				<Acquisition>
+				<AcquisitionId>4</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> >
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+			<!--Take KV  OBI image -->
+			<ImagingPoint>
+				<Cp>10</Cp>
+				<Acquisition>
+				<AcquisitionId>5</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake><KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="HighQuality" />
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<KV> 
+				<KiloVolts>80</KiloVolts><MilliAmperes>50</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</Acquisition>
+			</ImagingPoint>
+		<!--Take KV CBCT image -->	
+			<ImagingPoint>
+				<Cp>11</Cp>
+				<AcquisitionStart>
+				<AcquisitionId>6</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake>
+				<KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="DynamicGainFluoro"/>
+				<CalibrationSet>IMG-CBCT</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination>
+				<KV>
+				<KiloVolts>100</KiloVolts><MilliAmperes>40</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds><eFocalSpot>Large</eFocalSpot>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</AcquisitionStart>
+			</ImagingPoint>
+			<ImagingPoint>
+				<Cp>12</Cp>
+				<AcquisitionStop>
+				<AcquisitionId>6</AcquisitionId> 
+				<AcquisitionSpecs />
+				</AcquisitionStop>
+			</ImagingPoint>
+		<!--Take MV EPID image -->
+			<ImagingPoint>
+				<Cp>15</Cp>
+				<Acquisition>
+				<AcquisitionId>7</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination>
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+			<!--Take KV OBI image -->
+			<ImagingPoint>
+				<Cp>17</Cp>
+				<Acquisition>
+				<AcquisitionId>8</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake><KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="HighQuality" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<KV> 
+				<KiloVolts>80</KiloVolts><MilliAmperes>50</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</Acquisition>
+			</ImagingPoint>
+		<!--Take KV CBCT image -->	
+			<ImagingPoint>
+				<Cp>18</Cp>
+				<AcquisitionStart>
+				<AcquisitionId>9</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake>
+				<KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="DynamicGainFluoro"/>
+				<CalibrationSet>IMG-CBCT</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination>
+				<KV>
+				<KiloVolts>100</KiloVolts><MilliAmperes>40</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds><eFocalSpot>Large</eFocalSpot>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</AcquisitionStart>
+			</ImagingPoint>
+			<ImagingPoint>
+				<Cp>19</Cp>
+				<AcquisitionStop>
+				<AcquisitionId>9</AcquisitionId> 
+				<AcquisitionSpecs />
+				</AcquisitionStop>
+			</ImagingPoint>
+		<!--Take MV EPID image -->
+			<ImagingPoint>
+				<Cp>22</Cp>
+				<Acquisition>
+				<AcquisitionId>10</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+			<!--Take KV OBI image -->
+			<ImagingPoint>
+				<Cp>24</Cp>
+				<Acquisition>
+				<AcquisitionId>11</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake><KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="HighQuality" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<KV> 
+				<KiloVolts>80</KiloVolts><MilliAmperes>50</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</Acquisition>
+			</ImagingPoint>
+		<!--Take KV CBCT image -->	
+			<ImagingPoint>
+				<Cp>25</Cp>
+				<AcquisitionStart>
+				<AcquisitionId>12</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake>
+				<KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="DynamicGainFluoro"/>
+				<CalibrationSet>IMG-CBCT</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination>
+				<KV>
+				<KiloVolts>100</KiloVolts><MilliAmperes>40</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds><eFocalSpot>Large</eFocalSpot>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</AcquisitionStart>
+			</ImagingPoint>
+			<ImagingPoint>
+				<Cp>26</Cp>
+				<AcquisitionStop>
+				<AcquisitionId>12</AcquisitionId> 
+				<AcquisitionSpecs />
+				</AcquisitionStop>
+			</ImagingPoint>
+		<!--Take MV EPID image -->
+			<ImagingPoint>
+				<Cp>29</Cp>
+				<Acquisition>
+				<AcquisitionId>13</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+			<!--Take KV OBI image -->
+			<ImagingPoint>
+				<Cp>31</Cp>
+				<Acquisition>
+				<AcquisitionId>14</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake><KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="HighQuality" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<KV> 
+				<KiloVolts>80</KiloVolts><MilliAmperes>50</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</Acquisition>
+			</ImagingPoint>
+		<!--Take KV CBCT image -->	
+			<ImagingPoint>
+				<Cp>32</Cp>
+				<AcquisitionStart>
+				<AcquisitionId>15</AcquisitionId>
+				<AcquisitionSpecs>
+				<Handshake>true</Handshake>
+				<KV>true</KV>
+				</AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="DynamicGainFluoro"/>
+				<CalibrationSet>IMG-CBCT</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination>
+				<KV>
+				<KiloVolts>100</KiloVolts><MilliAmperes>40</MilliAmperes>
+				<MilliSeconds>10</MilliSeconds><eFocalSpot>Large</eFocalSpot>
+				<eFluoroLevelControl>None</eFluoroLevelControl>
+				</KV>
+				</AcquisitionParameters>
+				</AcquisitionStart>
+			</ImagingPoint>
+			<ImagingPoint>
+				<Cp>33</Cp>
+				<AcquisitionStop>
+				<AcquisitionId>15</AcquisitionId> 
+				<AcquisitionSpecs />
+				</AcquisitionStop>
+			</ImagingPoint>
+		</ImagingPoints>
+		<ImagingTolerances/>
+	</ImagingParameters>
+</SetBeam>
+</VarianResearchBeam>

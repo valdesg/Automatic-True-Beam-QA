@@ -1,0 +1,70 @@
+function update_couch_position_with_random_number(file_name) 
+
+%@param file_name the name of the XML file whose couch position will be
+% updated based on the generation of random positions. The name only, the
+% 'xml' extention is added by the program. ex 'xmlfile'
+% @OUTPUT: An XML file equivalent to the one contain in file_name but where
+% the positions of the vector has been updated with randonly generated positions around the set value.
+%NOTE: The maximum movement in any direction would be 2cm in agreement with
+%TG-179. 
+
+%Setting the initial position of the couch
+couch_vertical = 50;
+couch_lateral = 0;
+couch_longitudinal = 125;
+couch_rotational = 0;
+couch_initial_position = [couch_vertical , couch_lateral , couch_longitudinal, couch_rotational]; 
+
+%setting up the maximum movement of the couch in any direction. 
+
+maximum_movment = 2; % to be in agreement with the 2cm indicated by TG-179
+
+couch_vector_KV_CT = couch_initial_position;
+
+%randomly generating the position of the couch
+for i=1:4
+    couch_vector_KV_CT(i) = couch_vector_KV_CT(i) - maximum_movment + 2 * maximum_movment * rand(1);  
+end
+   
+%Reading the xml file
+xDoc = xmlread(file_name); 
+xRoot = xDoc.getDocumentElement();
+
+% getting the list of all the nodes that describe the Couch Position
+CouchVrt_Node_List = xRoot.getElementsByTagName('CouchVrt');
+CouchLat_Node_List = xRoot.getElementsByTagName('CouchLat');
+CouchLng_Node_List = xRoot.getElementsByTagName('CouchLng');
+CouchRtn_Node_List = xRoot.getElementsByTagName('CouchRtn');
+
+% Establishing the positions at which the couch vector nodes for the
+% different images appear on the XML document. Note that it starts with 1
+% because there is an initial position which is not used for any image. 
+KV_CBCT_node_position = 1;
+
+%Converting the Couch Position from IEC scale to Varian Scale
+
+%Vertical
+couch_vector_KV_CT(1) = 100 - couch_vector_KV_CT(1);
+
+%Lateral
+couch_vector_KV_CT(2) = 100 + couch_vector_KV_CT(2);
+
+%Longitudinal
+couch_vector_KV_CT(3) = couch_vector_KV_CT(3);
+
+%Rotational
+couch_vector_KV_CT(4) = 180-couch_vector_KV_CT(4);
+
+%updating the position for the KV CBCT image
+CouchVrt_new_text=  xDoc.createTextNode(num2str(couch_vector_KV_CT(1)));
+CouchLat_new_text = xDoc.createTextNode(num2str(couch_vector_KV_CT(2)));
+CouchLng_new_text = xDoc.createTextNode(num2str(couch_vector_KV_CT(3)));
+CouchRtn_new_text = xDoc.createTextNode(num2str(couch_vector_KV_CT(4)));
+
+CouchVrt_Node_List.item(KV_CBCT_node_position).replaceChild(CouchVrt_new_text,CouchVrt_Node_List.item(KV_CBCT_node_position).getFirstChild());
+CouchLat_Node_List.item(KV_CBCT_node_position).replaceChild(CouchLat_new_text,CouchLat_Node_List.item(KV_CBCT_node_position).getFirstChild());
+CouchLng_Node_List.item(KV_CBCT_node_position).replaceChild(CouchLng_new_text,CouchLng_Node_List.item(KV_CBCT_node_position).getFirstChild());
+CouchRtn_Node_List.item(KV_CBCT_node_position).replaceChild(CouchRtn_new_text,CouchRtn_Node_List.item(KV_CBCT_node_position).getFirstChild());
+
+%generating the output
+xmlwrite('positioning and repositioning with couch shift.xml',xDoc);
