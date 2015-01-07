@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VarianResearchBeam SchemaVersion="1.0">
+<!--*******************************************************************************
+A metal ball bearing is placed near radiation isocenter. 
+- The sequence will acquire four MV portal images at four different couch positions
+- The sequence will acquire four MV portal images at the four cardinal angles
+
+********************************************************************************-->
+<SetBeam>
+	<Id>1</Id>
+	<MLCModel>NDS120HD</MLCModel>
+	<Accs></Accs>
+	<ControlPoints>
+        <Cp> <!--cp 0: Set up initial position of the table, the gantry, the Jaws (opened) and the MLC field (square)-->
+            <SubBeam><Seq>0</Seq><Name>Imaging and treatment coordinate coincidence</Name></SubBeam>
+            <Energy>6x</Energy><Mu>0</Mu><DRate>0</DRate>
+            <GantryRtn>180.00</GantryRtn><CollRtn>180.00</CollRtn>
+            <CouchVrt>100.0</CouchVrt><CouchLat>100.00</CouchLat><CouchLng>125.00</CouchLng><CouchRtn>90.0</CouchRtn>
+            <Y1>5.00</Y1><Y2>5.00</Y2><X1>6.00</X1><X2>6.00</X2>
+            <Mlc>
+                <ID>1</ID>
+                <B>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</B>
+                <A>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</A>
+            </Mlc>
+        </Cp>
+        <Cp></Cp><!--cp 1: Use dummy cp to index first MV Image --> 
+        <Cp><CouchRtn>135.0</CouchRtn></Cp><!--cp 2: Use to rotate the Couch for the second MV Image -->
+        <Cp></Cp><!--cp 3: Use dummy cp to index second MV Image-->
+        <Cp><CouchRtn>180.0</CouchRtn></Cp><!--cp 4: Use to rotate the Couch for the third MV Image -->
+        <Cp></Cp> <!--cp 5: Use dummy cp to index third MV Image -->
+        <Cp><CouchRtn>215.0</CouchRtn></Cp><!--cp 6: Use to rotate the Couch for the fourth MV Image -->
+		<Cp></Cp><!--cp 7: Use dummy cp to index fourth MV Image -->
+        <Cp><CouchRtn>270.0</CouchRtn></Cp><!--cp 8: Use to rotate the Couch for the fifth MV Image -->
+        <Cp></Cp><!--cp 9: Use dummy cp to index fifth MV Image -->
+        <Cp><GantryRtn>0</GantryRtn><CouchRtn>180.0</CouchRtn></Cp><!--cp 10: Use to rotate the Gantry and Couch for the sixth MV Image -->
+		<Cp></Cp> <!--cp 11: Use dummy cp to index sixth MV Image -->
+		<Cp><GantryRtn>90</GantryRtn></Cp><!--cp 12: Use to rotate the Gantry for the seven MV Image -->
+	    <Cp></Cp><!--cp 13: Use dummy cp to index seven MV Image -->
+		<Cp><GantryRtn>270</GantryRtn></Cp><!--cp 14: Use to rotate the Gantry for the eight MV Image -->
+	    <Cp></Cp><!--cp 15: Use dummy cp to index eigth MV Image -->
+		<Cp><GantryRtn>180</GantryRtn><CouchRtn>180.0</CouchRtn></Cp> <!--cp 16: Use to bring the Gantry and the Couch back to initial position-->
+	</ControlPoints>
+	<!--________________________________________________-->
+	<!-- I M A G I N G S E C T I O N -->
+	<!--________________________________________________-->
+	<ImagingParameters>
+		<OutsideTreatment>
+			<MaxMu>0</MaxMu> 
+		</OutsideTreatment>
+		<ImagingPoints>
+		 <!-- Make sure that the KV imager and source are in the correct position -->	
+			<ImagingPoint>
+					<Cp>0</Cp>
+					<Kvd><!-- Make sure the Kvd imager is retracted -->
+					<Positions>
+					<Lat>0</Lat><Lng>0</Lng><Vrt>-50</Vrt><Pitch>0</Pitch>
+					</Positions>
+					</Kvd> 
+					<Kvs><!-- Make sure the KV source is retracted -->
+					<Positions>
+					<Lat>0</Lat><Lng>0</Lng><Vrt>100</Vrt><Pitch>0</Pitch>
+					</Positions>
+					</Kvs>	
+		<!-- Make sure that the MV EPID is in the correct position -->	
+			        <Mvd> 
+					<Positions>
+					<Lat>0</Lat><Lng>0</Lng><Vrt>-50</Vrt><Pitch>0</Pitch>
+					</Positions>
+					</Mvd>	
+			</ImagingPoint>				
+			<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>1</Cp>
+				<Acquisition>
+				<AcquisitionId>1</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>3</Cp>
+				<Acquisition>
+				<AcquisitionId>2</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>5</Cp>
+				<Acquisition>
+				<AcquisitionId>3</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination>
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>7</Cp>
+				<Acquisition>
+				<AcquisitionId>4</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>9</Cp>
+				<Acquisition>
+				<AcquisitionId>5</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>11</Cp>
+				<Acquisition>
+				<AcquisitionId>6</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>13</Cp>
+				<Acquisition>
+				<AcquisitionId>7</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		<!--Take MV  EPID image -->
+			<ImagingPoint>
+				<Cp>15</Cp>
+				<Acquisition>
+				<AcquisitionId>8</AcquisitionId>
+				<AcquisitionSpecs><Handshake>true</Handshake></AcquisitionSpecs>
+				<AcquisitionParameters>
+				<ImageMode id="Highres" /> 
+				<CalibrationSet>DefaultCalibrationSetId</CalibrationSet>
+				<ImageDestination>ImageDestination</ImageDestination> 
+				<MV/> <!-- This is an MV image -->
+				</AcquisitionParameters>
+				</Acquisition>		
+			</ImagingPoint>
+		</ImagingPoints>
+		<ImagingTolerances/>
+	</ImagingParameters>
+</SetBeam>
+</VarianResearchBeam>
