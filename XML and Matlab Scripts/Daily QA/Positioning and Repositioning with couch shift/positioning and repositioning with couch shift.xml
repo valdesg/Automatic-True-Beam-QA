@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VarianResearchBeam SchemaVersion="1.0">
+<!--*******************************************************************************
+ A phantom is considered at isocenter.
+ 1) A specific displacement of the couch from isocenter using a random number generator is applied. The movement in all axis is within 2cm to be in agreement with TG179.
+ 2) acquire a localization image dataset to assess the couch motions required to align the phantom with a reference CT dataset 
+ 3) apply the couch shift.
+ 4) acquire a verification dataset to verify that the couch shift has corrected the positioning difference.  
+ This value should be near 0 ± 2 mm, according to TG-179, and be 0 ± 1 mm for SBRT treatment according to TG-142.  
+********************************************************************************-->
+
+   
+   
+   
+   <SetBeam>
+	
+      
+      
+      
+      <Id>1</Id>
+	
+      
+      
+      
+      <MLCModel>NDS120HD</MLCModel>
+	
+      
+      
+      
+      <Accs/>
+	
+      
+      
+      
+      <ControlPoints>
+         
+         
+         
+         <Cp> <!--cp 0: Set up initial position of the table, the gantry, the Jaws (opened) and the MLC field (square)-->
+            
+            
+            
+            <SubBeam>
+               
+               
+               
+               <Seq>0</Seq>
+               
+               
+               
+               <Name>Imaging and treatment coordinate coincidence</Name>
+            
+            
+            
+            </SubBeam>
+            
+            
+            
+            <Energy>0k</Energy>
+            
+            
+            
+            <Mu>0</Mu>
+            
+            
+            
+            <DRate>0</DRate>	
+            
+            
+            
+            <GantryRtn>180.00</GantryRtn>
+            
+            
+            
+            <CollRtn>180.00</CollRtn>			
+            
+            
+            
+            <CouchVrt>100.0</CouchVrt>
+            
+            
+            
+            <CouchLat>100.00</CouchLat>		
+            
+            
+            
+            <CouchLng>125.00</CouchLng>
+            
+            
+            
+            <CouchRtn>180.0</CouchRtn>
+            
+            
+            
+            <Y1>5.00</Y1>
+            
+            
+            
+            <Y2>5.00</Y2>
+            
+            
+            
+            <X1>6.00</X1>
+            
+            
+            
+            <X2>6.00</X2><!-- What should the size of the jaws be?-->
+           
+            
+            
+            <Mlc>
+				
+               
+               
+               <ID>1</ID>
+				
+               
+               
+               <B>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</B>
+				
+               
+               
+               <A>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</A>
+			
+            
+            
+            </Mlc>
+         
+         
+         
+         </Cp>
+		<!--cp 1: Position of the couch when the KV CBCT image is taken. -->
+         
+         
+         
+         <Cp>
+            
+            
+            
+            <CouchVrt>99.4706</CouchVrt>
+            
+            
+            
+            <CouchLat>98.3902</CouchLat>
+            
+            
+            
+            <CouchLng>124.88601</CouchLng>
+            
+            
+            
+            <CouchRtn>178.18753</CouchRtn>
+         
+         
+         
+         </Cp> 
+        
+         
+         
+         <Cp>
+            
+            
+            <GantryRtn>-4</GantryRtn> 
+         
+         
+         </Cp> <!--cp 2: Use to rotate the Gantry to the initial position for  KV CBCT acquisition -->
+		
+         
+         <Cp>
+            
+            
+            <GantryRtn>364</GantryRtn> 
+         
+         
+         </Cp> <!--cp 3: Use to end the rotation of the Gantry for  KV CBCT acquisition -->
+		
+         
+         
+         <Cp>
+            
+            
+            <GantryRtn>180</GantryRtn> 
+         
+         
+         </Cp> <!--cp 4: Use to bring the Gantry back to initial position -->
+	
+      
+      
+      
+      </ControlPoints>
+	<!--________________________________________________-->
+	<!-- I M A G I N G S E C T I O N -->
+	<!--________________________________________________-->
+	
+      
+      
+      
+      <ImagingParameters>
+		
+         
+         
+         
+         <OutsideTreatment>
+			
+            
+            
+            
+            <MaxMu>0</MaxMu> <!-- Check this number later -->
+		
+         
+         
+         
+         </OutsideTreatment>
+		
+         
+         
+         
+         <ImagingPoints>
+		<!-- Make sure that the KV imager and source are in the correct position -->	
+			
+            
+            
+            
+            <ImagingPoint>
+					
+               
+               
+               
+               <Cp>0</Cp>
+					
+               
+               
+               
+               <Kvd> <!-- Make sure the Kvd imager is in the right position -->
+					
+                  
+                  
+                  
+                  <Positions>
+					
+                     
+                     
+                     
+                     <Lat>0</Lat>
+                     
+                     
+                     
+                     <Lng>0</Lng>
+                     
+                     
+                     
+                     <Vrt>-50</Vrt>
+                     
+                     
+                     
+                     <Pitch>0</Pitch>
+					
+                  
+                  
+                  
+                  </Positions>
+					
+               
+               
+               
+               </Kvd> 
+					
+               
+               
+               
+               <Kvs> <!-- Make sure the KV source is in the right position -->
+					
+                  
+                  
+                  
+                  <Positions>
+					
+                     
+                     
+                     
+                     <Lat>0</Lat>
+                     
+                     
+                     
+                     <Lng>0</Lng>
+                     
+                     
+                     
+                     <Vrt>100</Vrt>
+                     
+                     
+                     
+                     <Pitch>0</Pitch>
+					
+                  
+                  
+                  
+                  </Positions>
+					
+               
+               
+               
+               </Kvs>					
+			 
+            
+            
+            
+            </ImagingPoint>
+		<!--Take KV CBCT image -->	
+			
+            
+            
+            
+            <ImagingPoint>
+				
+               
+               
+               
+               <Cp>2</Cp>
+				
+               
+               
+               
+               <AcquisitionStart>
+				
+                  
+                  
+                  
+                  <AcquisitionId>1</AcquisitionId>
+				
+                  
+                  
+                  
+                  <AcquisitionSpecs>
+				
+                     
+                     
+                     
+                     <Handshake>true</Handshake>
+				
+                     
+                     
+                     
+                     <KV>true</KV>
+				
+                  
+                  
+                  
+                  </AcquisitionSpecs>
+				
+                  
+                  
+                  
+                  <AcquisitionParameters>
+				
+                     
+                     
+                     
+                     <ImageMode id="DynamicGainFluoro"/>
+				
+                     
+                     
+                     
+                     <CalibrationSet>IMG-CBCT</CalibrationSet>
+				
+                     
+                     
+                     
+                     <ImageDestination>ImageDestination</ImageDestination>
+				
+                     
+                     
+                     
+                     <KV>
+				
+                        
+                        
+                        
+                        <KiloVolts>100</KiloVolts>
+                        
+                        
+                        
+                        <MilliAmperes>40</MilliAmperes>
+				
+                        
+                        
+                        
+                        <MilliSeconds>10</MilliSeconds>
+                        
+                        
+                        
+                        <eFocalSpot>Large</eFocalSpot>
+				
+                        
+                        
+                        
+                        <eFluoroLevelControl>None</eFluoroLevelControl>
+				
+                     
+                     
+                     
+                     </KV>
+				
+                  
+                  
+                  
+                  </AcquisitionParameters>
+				
+               
+               
+               
+               </AcquisitionStart>
+			
+            
+            
+            
+            </ImagingPoint>
+			
+            
+            
+            
+            <ImagingPoint>
+				
+               
+               
+               
+               <Cp>3</Cp>
+				
+               
+               
+               
+               <AcquisitionStop>
+				
+                  
+                  
+                  
+                  <AcquisitionId>1</AcquisitionId> 
+				
+                  
+                  
+                  
+                  <AcquisitionSpecs/>
+				
+               
+               
+               
+               </AcquisitionStop>
+			
+            
+            
+            
+            </ImagingPoint>
+		
+         
+         
+         
+         </ImagingPoints>
+		
+         
+         
+         
+         <ImagingTolerances/>
+	
+      
+      
+      
+      </ImagingParameters>
+
+   
+   
+   
+   </SetBeam>
+
+
+
+
+</VarianResearchBeam>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VarianResearchBeam SchemaVersion="1.0">
+<!--*******************************************************
+A KV CBCT is taken that includes 5 different phantom sessions:
+1. Spatial resolution
+2. High Contrast
+3. Low Contrast
+4. Uniformity and Noise
+5. HU constancy
+The couch is automatically moved to place each of this session in the center of FOV of the KVCT
+*******************************************************
+Rotate gantry 360 degrees and take KV images to be used
+for Cone Beam Reconstruction (CBCT).
+********************************************************-->
+<SetBeam>
+<Id>1</Id>
+<MLCModel>NDS120HD</MLCModel>
+<Accs/>
+<ControlPoints>
+	<Cp> <!-- Cp = 0 -->
+		<SubBeam><Seq>0</Seq><Name>CBCT_FullFan360</Name></SubBeam>
+		<Energy>0k</Energy>
+		<!--*******************************************************
+		MU and dose rate are 0 since we will be taking KV images only
+		and we are using the outside treatment mode
+		********************************************************-->
+		<Mu>0</Mu><DRate>0</DRate>
+		<!--Start the gantry in the overtravel range. -->
+		<GantryRtn>180</GantryRtn>
+		<CollRtn>180.00</CollRtn>
+		 <CouchVrt>100.0</CouchVrt><CouchLat>100.00</CouchLat><CouchLng>125.00</CouchLng><CouchRtn>180.0</CouchRtn>
+		<Y1>5.00</Y1><Y2>5.00</Y2><X1>6.00</X1><X2>6.00</X2> <!-- What should the size of the jaws be? Now they are wide open-->
+		<Mlc>
+					<ID>1</ID>
+					<B>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</B>
+					<A>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 5.000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</A>
+		</Mlc>
+	</Cp>
+	    <Cp><GantryRtn>-4</GantryRtn> </Cp> <!--cp 1: Use to start the Gantry for  KV CBCT acquisition -->
+		<Cp><GantryRtn>364</GantryRtn> </Cp> <!--cp 2: Use to stop the Gantry for  KV CBCT acquisition -->
+		<Cp><GantryRtn>180</GantryRtn> </Cp> <!--cp 3: Use to bring the Gantry back to initial position -->
+	
+</ControlPoints>
+<!--Defines the imaging parameter for the beam and each control point -->
+<ImagingParameters>
+<OutsideTreatment>
+<!--*******************************************************************
+No need to set a max MU because we're taking KV images only
+********************************************************************-->
+<MaxMu>0</MaxMu>
+<!--*******************************************************************
+Here is where we specify that outside treatment mode
+********************************************************************-->
+</OutsideTreatment>
+<ImagingPoints>
+<!-- Make sure that the KV imager and source are in the correct position -->	
+			<ImagingPoint>
+					<Cp>0</Cp>
+					<Kvd> <!-- Make sure the Kvd imager is in the right position -->
+					<Positions>
+					<Lat>0</Lat><Lng>0</Lng><Vrt>-50</Vrt><Pitch>0</Pitch>
+					</Positions>
+					</Kvd> 
+					<Kvs> <!-- Make sure the KV source is in the right position -->
+					<Positions>
+					<Lat>0</Lat><Lng>0</Lng><Vrt>100</Vrt><Pitch>0</Pitch>
+					</Positions>
+					</Kvs>					
+			 </ImagingPoint>
+<!--************************************************
+Start continuous acquisition in DynamicGainFluoro
+mode (a good choice for CBCT)
+*************************************************-->
+<ImagingPoint>
+<Cp>1</Cp>
+<AcquisitionStart>
+<AcquisitionId>1</AcquisitionId>
+<AcquisitionSpecs>
+<Handshake>true</Handshake>
+<KV>true</KV>
+</AcquisitionSpecs>
+<AcquisitionParameters>
+<ImageMode id="DynamicGainFluoro"/>
+<CalibrationSet>IMG-CBCT</CalibrationSet>
+<ImageDestination>ImageDestination</ImageDestination>
+<KV>
+<KiloVolts>100</KiloVolts><MilliAmperes>40</MilliAmperes>
+<MilliSeconds>10</MilliSeconds><eFocalSpot>Large</eFocalSpot>
+<eFluoroLevelControl>None</eFluoroLevelControl>
+</KV>
+</AcquisitionParameters>
+</AcquisitionStart>
+</ImagingPoint>
+<!--*********************************************
+Stop the continuous image acquisition...
+**********************************************-->
+<ImagingPoint>
+<Cp>2</Cp>
+<AcquisitionStop>
+<AcquisitionId>1</AcquisitionId>
+<AcquisitionSpecs />
+</AcquisitionStop>
+</ImagingPoint>
+</ImagingPoints>
+<ImagingTolerances/>
+</ImagingParameters>
+</SetBeam>
+</VarianResearchBeam>
